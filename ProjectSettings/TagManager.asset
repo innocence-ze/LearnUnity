@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Animals
+  - Obstacles
+  - Ground
   layers:
   - Default
   - TransparentFX
