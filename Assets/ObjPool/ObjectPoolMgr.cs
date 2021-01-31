@@ -26,8 +26,10 @@ public class ObjectPoolMgr : MonoBehaviour
 
     private readonly Dictionary<string, ObjectPool> poolDic = new Dictionary<string, ObjectPool>();
 
+    //在inspector面板中中初始化对象池中物体
     public List<AllocObj> objPoolList = new List<AllocObj>();
 
+    //对象池中对象的一些属性
     [System.Serializable]
     public class AllocObj
     {

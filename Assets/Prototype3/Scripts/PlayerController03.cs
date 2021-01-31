@@ -43,7 +43,7 @@ public class PlayerController03 : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameController.Singleton.FireMsgListener("Jump");
+            GameController.Singleton.msgList.Add("Jump");
         }
     }
 
@@ -51,7 +51,7 @@ public class PlayerController03 : MonoBehaviour
     {
         if (other.gameObject.CompareTag(obsTagName))
         {
-            GameController.Singleton.FireMsgListener("GameOver");
+            GameController.Singleton.msgList.Add("GameOver");
         }
         if (other.gameObject.CompareTag("Ground"))
         {
