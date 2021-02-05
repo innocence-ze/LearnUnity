@@ -9,6 +9,9 @@ TagManager:
   - Ground
   - Buff
   - Enemy
+  - Prop
+  - Bomb
+  - Sensor
   layers:
   - Default
   - TransparentFX

@@ -37,6 +37,7 @@ public class ObjectPoolMgr : MonoBehaviour
         public int preAllocSize;            //池子创建时预申请的对象数量
         public int autoIncreaseCount;       //每次增加的对象数量
         public GameObject prefab;           //对象的应用
+        public float autoRecycleTime;       //多久后自动回收
     }
 
     private void Awake()

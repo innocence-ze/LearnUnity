@@ -15,6 +15,8 @@ public class ObjectPool : MonoBehaviour
     public GameObject prefab;
     public string objTypeString;
 
+    public float autoRecycleTime;
+
 
     public virtual void Init(ObjectPoolMgr.AllocObj obj)
     {
@@ -22,6 +24,7 @@ public class ObjectPool : MonoBehaviour
         preAllocCount = obj.preAllocSize;
         autoIncreaseCount = obj.autoIncreaseCount;
         objTypeString = obj.type;
+        autoRecycleTime = obj.autoRecycleTime;
 
         queue = new Queue<GameObject>(preAllocCount);
         for(int i =0; i < preAllocCount; i++)
@@ -64,7 +67,9 @@ public class ObjectPool : MonoBehaviour
         var go = Instantiate(prefab, Vector3.zero, Quaternion.identity);
         go.SetActive(false);
         go.transform.parent = transform;
-        go.AddComponent<PreInfo>().type = objTypeString;
+        var preInfo = go.AddComponent<PreInfo>();
+        preInfo.type = objTypeString;
+        preInfo.lifeTime = autoRecycleTime;
         queue.Enqueue(go);
     }
 }
