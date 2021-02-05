@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyObjectX : MonoBehaviour
+namespace Challenge5
 {
-    void Start()
+    public class DestroyObjectX : MonoBehaviour
     {
-        Destroy(gameObject, 2); // destroy particle after 2 seconds
+        void Start()
+        {
+            Destroy(gameObject, 2); // destroy particle after 2 seconds
+        }
+
+
     }
-
-
 }

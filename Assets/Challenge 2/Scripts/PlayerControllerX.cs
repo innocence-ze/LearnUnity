@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControllerX : MonoBehaviour
+namespace Challenge2
 {
-    public GameObject dogPrefab;
-
-    // Update is called once per frame
-    void Update()
+    public class PlayerControllerX : MonoBehaviour
     {
-        // On spacebar press, send dog
-        if (Input.GetKeyDown(KeyCode.Space))
+        public GameObject dogPrefab;
+
+        // Update is called once per frame
+        void Update()
         {
-            Instantiate(dogPrefab, transform.position, dogPrefab.transform.rotation);
+            // On spacebar press, send dog
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Instantiate(dogPrefab, transform.position, dogPrefab.transform.rotation);
+            }
         }
     }
 }
