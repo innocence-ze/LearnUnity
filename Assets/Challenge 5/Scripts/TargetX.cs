@@ -23,13 +23,13 @@ namespace Challenge5
             rb = GetComponent<Rigidbody>();
             gameManagerX = GameObject.Find("Game Manager").GetComponent<GameManagerX>();
 
-            transform.position = RandomSpawnPosition();
+            //transform.position = RandomSpawnPosition();
             StartCoroutine(RemoveObjectRoutine()); // begin timer before target leaves screen
 
         }
 
         // When target is clicked, destroy it, update score, and generate explosion
-        private void OnMouseEnter()
+        private void OnMouseDown() 
         {
             if (gameManagerX.isGameActive)
             {
@@ -86,6 +86,8 @@ namespace Challenge5
             }
 
         }
+
+
 
     }
 }

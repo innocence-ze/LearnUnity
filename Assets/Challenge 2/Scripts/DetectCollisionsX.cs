@@ -10,6 +10,10 @@ namespace Challenge2
         private void OnTriggerEnter(Collider other)
         {
             Destroy(gameObject);
+            if (other.CompareTag("Ground"))
+            {
+                Debug.Log("GameOver");
+            }
         }
     }
 }

@@ -10,13 +10,17 @@ namespace Challenge5
     public class GameManagerX : MonoBehaviour
     {
         public TextMeshProUGUI scoreText;
-        public TextMeshProUGUI gameOverText;
+        public TextMeshProUGUI timeText;
+
+
         public GameObject titleScreen;
-        public Button restartButton;
+        public GameObject gameScreen;
+        public GameObject overScreen;
 
         public List<GameObject> targetPrefabs;
 
         private int score;
+        private int time = 60;
         private float spawnRate = 1.5f;
         public bool isGameActive;
 
@@ -25,14 +29,15 @@ namespace Challenge5
         private float minValueY = -3.75f; //  y value of the center of the bottom-most square
 
         // Start the game, remove title screen, reset score, and adjust spawnRate based on difficulty button clicked
-        public void StartGame()
+        public void StartGame(int difficulty)
         {
-            spawnRate /= 5;
+            spawnRate /= difficulty;
             isGameActive = true;
             StartCoroutine(SpawnTarget());
+            StartCoroutine(TimeCoroutine());
             score = 0;
-            UpdateScore(0);
             titleScreen.SetActive(false);
+            gameScreen.SetActive(true);
         }
 
         // While game is active spawn a random target
@@ -48,6 +53,20 @@ namespace Challenge5
                     Instantiate(targetPrefabs[index], RandomSpawnPosition(), targetPrefabs[index].transform.rotation);
                 }
 
+            }
+        }
+
+        IEnumerator TimeCoroutine()
+        {
+            while(time > 0)
+            {
+                yield return new WaitForSeconds(1f);
+                time--;
+                UpdateTime(time);
+                if(time == 0)
+                {
+                    GameOver();
+                }
             }
         }
 
@@ -72,15 +91,20 @@ namespace Challenge5
         public void UpdateScore(int scoreToAdd)
         {
             score += scoreToAdd;
-            scoreText.text = "score";
+            scoreText.text = "score:" + score;
+        }
+
+        void UpdateTime(int t)
+        {
+            timeText.text = "time:" + t;
         }
 
         // Stop game, bring up game over text and restart button
         public void GameOver()
         {
-            gameOverText.gameObject.SetActive(true);
-            restartButton.gameObject.SetActive(false);
             isGameActive = false;
+            gameScreen.SetActive(false);
+            overScreen.SetActive(true);
         }
 
         // Restart game by reloading the scene

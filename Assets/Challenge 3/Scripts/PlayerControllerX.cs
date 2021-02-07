@@ -6,7 +6,7 @@ namespace Challenge3
 {
     public class PlayerControllerX : MonoBehaviour
     {
-        public bool gameOver;
+        public bool gameOver = false;
 
         public float floatForce;
         private float gravityModifier = 1.5f;
@@ -25,9 +25,10 @@ namespace Challenge3
         {
             Physics.gravity *= gravityModifier;
             playerAudio = GetComponent<AudioSource>();
+            playerRb = GetComponent<Rigidbody>();
 
             // Apply a small upward force at the start of the game
-            playerRb.AddForce(Vector3.up * 5, ForceMode.Impulse);
+            //playerRb.AddForce(Vector3.up * 5, ForceMode.Impulse);
 
         }
 
@@ -35,13 +36,13 @@ namespace Challenge3
         void Update()
         {
             // While space is pressed and player is low enough, float up
-            if (Input.GetKey(KeyCode.Space) && !gameOver)
+            if (Input.GetKeyDown(KeyCode.Space) && !gameOver)
             {
-                playerRb.AddForce(Vector3.up * floatForce);
+                playerRb.AddForce(Vector3.up * floatForce, ForceMode.Impulse);
             }
         }
 
-        private void OnCollisionEnter(Collision other)
+        private void OnTriggerEnter(Collider other)
         {
             // if player collides with bomb, explode and set gameOver to true
             if (other.gameObject.CompareTag("Bomb"))

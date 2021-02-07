@@ -28,7 +28,8 @@ namespace Challenge2
             Vector3 spawnPos = new Vector3(Random.Range(spawnLimitXLeft, spawnLimitXRight), spawnPosY, 0);
 
             // instantiate ball at random spawn location
-            Instantiate(ballPrefabs[0], spawnPos, ballPrefabs[0].transform.rotation);
+            int index = Random.Range(0, ballPrefabs.Length);
+            Instantiate(ballPrefabs[index], spawnPos, ballPrefabs[index].transform.rotation);
         }
 
     }

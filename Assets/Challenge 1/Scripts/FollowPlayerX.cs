@@ -7,7 +7,7 @@ namespace Challenge1
     public class FollowPlayerX : MonoBehaviour
     {
         public GameObject plane;
-        private Vector3 offset;
+        public Vector3 offset;
 
         // Start is called before the first frame update
         void Start()

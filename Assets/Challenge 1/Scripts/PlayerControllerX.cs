@@ -8,7 +8,7 @@ namespace Challenge1
     {
         public float speed;
         public float rotationSpeed;
-        public float verticalInput;
+        float verticalInput;
 
         // Start is called before the first frame update
         void Start()
@@ -23,10 +23,10 @@ namespace Challenge1
             verticalInput = Input.GetAxis("Vertical");
 
             // move the plane forward at a constant rate
-            transform.Translate(Vector3.back * speed);
+            transform.Translate(Vector3.forward * speed * Time.fixedDeltaTime);
 
             // tilt the plane up/down based on up/down arrow keys
-            transform.Rotate(Vector3.right * rotationSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.left * rotationSpeed * Time.fixedDeltaTime * verticalInput);
         }
     }
 }
