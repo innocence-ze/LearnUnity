@@ -19,6 +19,15 @@ namespace Challenge4
 
         public GameObject player;
 
+        Quaternion cameraRot;
+        Vector3 cameraPos;
+
+        private void Start()
+        {
+            cameraRot = Camera.main.transform.localRotation;
+            cameraPos = Camera.main.transform.localPosition;
+        }
+
         // Update is called once per frame
         void Update()
         {
@@ -65,9 +74,12 @@ namespace Challenge4
         void ResetPlayerPosition()
         {
             player.transform.position = new Vector3(0, 1, -7);
+            player.transform.rotation = Quaternion.identity;
             player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-
+            Camera.main.transform.localRotation = cameraRot;
+            Camera.main.transform.localPosition = cameraPos;
+            FindObjectOfType<RotateCameraX>().transform.localRotation = Quaternion.identity;
         }
 
     }

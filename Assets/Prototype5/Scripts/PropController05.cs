@@ -50,6 +50,7 @@ public class PropController05 : MonoBehaviour
             else
             {
                 gc.UpdateScore(-score);
+                gc.Defeat();
             }
             ObjectPoolMgr.Singleton.Recycle(gameObject);
         }

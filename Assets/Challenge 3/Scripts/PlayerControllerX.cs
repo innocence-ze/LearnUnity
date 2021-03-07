@@ -36,8 +36,9 @@ namespace Challenge3
         void Update()
         {
             // While space is pressed and player is low enough, float up
-            if (Input.GetKeyDown(KeyCode.Space) && !gameOver)
+            if (Input.GetKeyDown(KeyCode.Space) && !gameOver && transform.position.y < 15f)
             {
+                playerRb.velocity = Vector3.zero;
                 playerRb.AddForce(Vector3.up * floatForce, ForceMode.Impulse);
             }
         }

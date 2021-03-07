@@ -19,8 +19,10 @@ public class GameController05 : MonoBehaviour
 
     public GameObject GamePanel;
     public GameObject MenuPanel;
+    public GameObject DefeatPanel;
     public Text scoreText;
 
+    public BoxCollider sensor;
 
     void OnSetGameLevel(int l)
     {
@@ -48,12 +50,14 @@ public class GameController05 : MonoBehaviour
 
         GamePanel.SetActive(true);
         MenuPanel.SetActive(false);
+        DefeatPanel.SetActive(false);
     }
 
     public void OnReturnMenu()
     {
         GamePanel.SetActive(false);
         MenuPanel.SetActive(true);
+        DefeatPanel.SetActive(false);
         StopCoroutine(mainCoroutine);
         Physics.gravity = originalGravity;
         GameController.Singleton.msgList.Add("ReturnMenu");
@@ -77,9 +81,13 @@ public class GameController05 : MonoBehaviour
         }
     }
 
-    void Defeat()
+    public void Defeat()
     {
         StopCoroutine(mainCoroutine);
+        GamePanel.SetActive(false);
+        MenuPanel.SetActive(false);
+        DefeatPanel.SetActive(true);
+        DefeatPanel.transform.Find("Score").GetComponent<Text>().text = "Score:" + score;
     }
 
     public void UpdateScore(int addScore)
